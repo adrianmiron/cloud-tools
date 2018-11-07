@@ -22,7 +22,7 @@
         "template_key": "GO_VERSION"
     },
     "docker-cloud-tools": {
-        "github_repo": "ccurcanu/docker-cloud-tools",
+        "github_repo": "oraclecloudmigration/cloud-tools",
         "version": "3",
         "template_key": "DOCKERFILE_VERSION"
     }
