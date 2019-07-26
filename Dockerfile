@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-LABEL version="13"
+LABEL version="24"
 
 ENV color_prompt yes
 ENV SHELL /bin/bash
@@ -16,8 +16,8 @@ RUN apt-get install build-essential -y
 RUN apt-get install git subversion -y
 
 
-# Installing latest GO (go1.11.2)
-RUN cd /tmp && echo "go1.11.2" > $HOME/.go_version &&  \
+# Installing latest GO (go1.12.5)
+RUN cd /tmp && echo "go1.12.5" > $HOME/.go_version &&  \
     wget -q https://storage.googleapis.com/golang/getgo/installer_linux && \
     chmod +x installer_linux && \
     ./installer_linux && \
@@ -36,24 +36,24 @@ RUN pip install ipdb ipython
 RUN pip install oci-cli awscli boto3
 
 
-# Installing Latest Ansible (v2.7.1)
+# Installing Latest Ansible (v2.8.0)
 RUN cd /tmp && \
-    git clone -q https://github.com/ansible/ansible.git -b "v2.7.1" --single-branch --depth 1 && \
+    git clone -q https://github.com/ansible/ansible.git -b "v2.8.0" --single-branch --depth 1 && \
     cd /tmp/ansible && python setup.py build install && rm -rf /tmp/ansible
 
 
-#Installing Latest Hashicorp Terraform (v0.12.5)
+# Installing Latest Hashicorp Terraform (v0.12.5)
 RUN curl -s https://releases.hashicorp.com/terraform/0.12.5/terraform_0.12.5_linux_amd64.zip > terraform_0.12.5_linux_amd64.zip && \
-	unzip terraform_0.12.5_linux_amd64.zip -d /bin && \
-	rm -f terraform_0.12.5_linux_amd64.zip 
+    unzip terraform_0.12.5_linux_amd64.zip -d /bin && \
+    rm -f terraform_0.12.5_linux_amd64.zip
 
 
-# Installing Latest Hashicorp Packer (v1.4.0)
+# Installing Latest Hashicorp Packer (v1.4.2)
 RUN cd /tmp \
-    && wget -q https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip \
-    && unzip packer_1.4.0_linux_amd64.zip \
+    && wget -q https://releases.hashicorp.com/packer/1.4.2/packer_1.4.2_linux_amd64.zip \
+    && unzip packer_1.4.2_linux_amd64.zip \
     && mv packer /usr/local/bin/ \
-    && rm -rf packer_1.4.0_linux_amd64.zip
+    && rm -rf packer_1.4.2_linux_amd64.zip
 
 
 ENV LC_ALL C.UTF-8
